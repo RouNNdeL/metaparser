@@ -1,2 +1,10 @@
 FIELD_AUTHOR = "author"
 FIELD_CREATE_DATE = "create_date"
+FIELD_COMPOSER = 'composer'
+FIELD_ARTIST = 'artist'
+FIELD_ALBUM = 'album'
+FIELD_ALBUM_ARTIST = 'album_artist'
+FIELD_TITLE = 'title'
+FIELD_TRACK_NUM = 'track_num'
+FIELD_PUBLISHER = 'publisher'
+FIELD_GENRE = 'genre'
