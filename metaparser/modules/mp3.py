@@ -1,19 +1,22 @@
-from typing import Any
-from typing import List
+from typing import Any, List
 
 import eyed3
 import eyed3.mp3
 
 from .base import BaseParser
-from .constants import FIELD_PUBLISHER, FIELD_ARTIST, FIELD_ALBUM, FIELD_ALBUM_ARTIST, FIELD_TITLE, FIELD_TRACK_NUM, \
-    FIELD_GENRE, FIELD_COMPOSER, FIELD_ALBUM_TYPE, FIELD_ARTIST_ORIGIN, FIELD_ARTIST_URL, FIELD_AUDIO_FILE_URL, \
-    FIELD_AUDIO_SOURCE_URL \
-    , FIELD_BEST_RELEASE_DATE, FIELD_BPM, FIELD_CD_ID, FIELD_COMMERCIAL_URL, FIELD_COPYRIGHT, FIELD_COPYRIGHT_URL, \
-    FIELD_ENCODED_BY, \
-    FIELD_ENCODING_DATE, FIELD_INTERNET_RADIO_URL, FIELD_ORIGINAL_ARTIST, FIELD_ORIGINAL_RELEASE_DATE, \
-    FIELD_PAYMENT_URL, FIELD_PLAY_COUNT \
-    , FIELD_PUBLISHER_URL, FIELD_READ_ONLY, FIELD_RECORDING_DATE, FIELD_RELEASE_DATE, FIELD_TAGGING_DATE, \
-    FIELD_TERMS_OF_USE
+from .constants import (FIELD_ALBUM, FIELD_ALBUM_ARTIST, FIELD_ALBUM_TYPE,
+                        FIELD_ARTIST, FIELD_ARTIST_ORIGIN, FIELD_ARTIST_URL,
+                        FIELD_AUDIO_FILE_URL, FIELD_AUDIO_SOURCE_URL,
+                        FIELD_BEST_RELEASE_DATE, FIELD_BPM, FIELD_CD_ID,
+                        FIELD_COMMERCIAL_URL, FIELD_COMPOSER, FIELD_COPYRIGHT,
+                        FIELD_COPYRIGHT_URL, FIELD_ENCODED_BY,
+                        FIELD_ENCODING_DATE, FIELD_GENRE,
+                        FIELD_INTERNET_RADIO_URL, FIELD_ORIGINAL_ARTIST,
+                        FIELD_ORIGINAL_RELEASE_DATE, FIELD_PAYMENT_URL,
+                        FIELD_PLAY_COUNT, FIELD_PUBLISHER, FIELD_PUBLISHER_URL,
+                        FIELD_READ_ONLY, FIELD_RECORDING_DATE,
+                        FIELD_RELEASE_DATE, FIELD_TAGGING_DATE,
+                        FIELD_TERMS_OF_USE, FIELD_TITLE, FIELD_TRACK_NUM)
 
 
 class Mp3Parser(BaseParser):
@@ -32,12 +35,12 @@ class Mp3Parser(BaseParser):
     def get_fields(self) -> List[str]:
         return [FIELD_PUBLISHER, FIELD_ARTIST, FIELD_ALBUM, FIELD_ALBUM_ARTIST, FIELD_TITLE, FIELD_TRACK_NUM,
                 FIELD_GENRE, FIELD_COMPOSER, FIELD_ALBUM_TYPE, FIELD_ARTIST_ORIGIN, FIELD_ARTIST_URL,
-                FIELD_AUDIO_FILE_URL, FIELD_AUDIO_SOURCE_URL
-            , FIELD_BEST_RELEASE_DATE, FIELD_BPM, FIELD_CD_ID, FIELD_COMMERCIAL_URL, FIELD_COPYRIGHT,
+                FIELD_AUDIO_FILE_URL, FIELD_AUDIO_SOURCE_URL,
+                FIELD_BEST_RELEASE_DATE, FIELD_BPM, FIELD_CD_ID, FIELD_COMMERCIAL_URL, FIELD_COPYRIGHT,
                 FIELD_COPYRIGHT_URL, FIELD_ENCODED_BY,
                 FIELD_ENCODING_DATE, FIELD_INTERNET_RADIO_URL, FIELD_ORIGINAL_ARTIST, FIELD_ORIGINAL_RELEASE_DATE,
-                FIELD_PAYMENT_URL, FIELD_PLAY_COUNT
-            , FIELD_PUBLISHER_URL, FIELD_READ_ONLY, FIELD_RECORDING_DATE, FIELD_RELEASE_DATE, FIELD_TAGGING_DATE,
+                FIELD_PAYMENT_URL, FIELD_PLAY_COUNT,
+                FIELD_PUBLISHER_URL, FIELD_READ_ONLY, FIELD_RECORDING_DATE, FIELD_RELEASE_DATE, FIELD_TAGGING_DATE,
                 FIELD_TERMS_OF_USE]
 
     def edit_field(self, field: str, value: Any) -> None:
@@ -51,11 +54,11 @@ class Mp3Parser(BaseParser):
         self.tag.save()
 
     def print(self):
-        print('Showing ID3 version' + ": " + '.'.join([str(num) for num in getattr(self.tag, 'version', None)]))
-        print('Showing only not None fields')
-        print('-------------------------------------')
+        print("Showing ID3 version" + ": " + '.'.join([str(num) for num in getattr(self.tag, "version", None)]))
+        print("Showing only not None fields")
+        print("-------------------------------------")
         for field in self.get_fields():
             value = getattr(self.tag, field, None)
             if value is not None:
                 print(field + ": " + str(value))
-        print('-------------------------------------')
+        print("-------------------------------------")
