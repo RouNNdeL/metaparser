@@ -49,3 +49,13 @@ class Mp3Parser(BaseParser):
     def scrape(self):
         self.tag.clear()
         self.tag.save()
+
+    def print(self):
+        print('Showing ID3 version' + ": " + '.'.join([str(num) for num in getattr(self.tag, 'version', None)]))
+        print('Showing only not None fields')
+        print('-------------------------------------')
+        for field in self.get_fields():
+            value = getattr(self.tag, field, None)
+            if value is not None:
+                print(field + ": " + str(value))
+        print('-------------------------------------')
