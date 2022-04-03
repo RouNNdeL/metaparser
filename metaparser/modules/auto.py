@@ -7,7 +7,7 @@ from .base import BaseParser
 from .exif import ExifParser
 from .mp3 import Mp3Parser
 
-PARSERS = [Mp3Parser]
+PARSERS = [ExifParser, Mp3Parser]
 
 
 class ParserFactory:

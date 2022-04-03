@@ -113,5 +113,4 @@ class Mp3Parser(BaseParser):
         return values
 
     def write(self) -> None:
-        self.__tag.save()
-
+        self.__tag.save()  # type: ignore
