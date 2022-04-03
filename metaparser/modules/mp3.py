@@ -1,7 +1,7 @@
 from typing import Any, List
 
-import eyed3
-import eyed3.mp3
+import eyed3  # type: ignore
+import eyed3.mp3  # type: ignore
 
 from .base import BaseParser
 from .constants import (FIELD_ALBUM, FIELD_ALBUM_ARTIST, FIELD_ALBUM_TYPE,
@@ -44,6 +44,8 @@ class Mp3Parser(BaseParser):
                 FIELD_TERMS_OF_USE]
 
     def edit_field(self, field: str, value: Any) -> None:
+        if self.tag is None:
+            raise TypeError("Tag is null, parse the file first")
         if field not in self.get_fields():
             raise KeyError("Field not present in parser")
         setattr(self.tag, field, value)
@@ -54,7 +56,7 @@ class Mp3Parser(BaseParser):
         self.tag.save()
 
     def print(self):
-        print("Showing ID3 version" + ": " + '.'.join([str(num) for num in getattr(self.tag, "version", None)]))
+        print("Showing ID3 version" + ": " + ".".join([str(num) for num in getattr(self.tag, "version", None)]))
         print("Showing only not None fields")
         print("-------------------------------------")
         for field in self.get_fields():
