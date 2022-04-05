@@ -4,6 +4,7 @@ from PyPDF2 import PdfFileReader, PdfFileMerger
 
 from .base import BaseParser
 
+FIELD_DISCLAIMER = "You can specify your own fields. Make sure they start with /"
 FIELD_TITLE = "/Title"
 FIELD_AUTHOR = "/Author"
 FIELD_SUBJECT = "/Subject"
@@ -13,12 +14,13 @@ FIELD_MODIFIED_DATE = "/Modified Date"
 FIELD_CREATOR = "/Creator"
 FIELD_PRODUCER = "/Producer"
 FIELD_TRAPPED = "/Trapped"
-FIELD_DADURA = "/Dadura"
+
 
 
 class PDFParser(BaseParser):
     def get_fields(self) -> List[str]:
         return [
+            FIELD_DISCLAIMER,
             FIELD_TITLE,
             FIELD_AUTHOR,
             FIELD_SUBJECT,
@@ -27,8 +29,7 @@ class PDFParser(BaseParser):
             FIELD_MODIFIED_DATE,
             FIELD_CREATOR,
             FIELD_PRODUCER,
-            FIELD_TRAPPED,
-            FIELD_DADURA
+            FIELD_TRAPPED
         ]
 
     @staticmethod
@@ -48,8 +49,8 @@ class PDFParser(BaseParser):
             self.metadata[field] = metadata[field]
 
     def set_field(self, field: str, value: Any) -> None:
-        if field not in self.get_fields():
-            raise KeyError("Field not present in parser")
+        if not field.startswith("/"):
+            raise ValueError("Bad name for field")
         self.metadata[field] = value
         self.write()
 
