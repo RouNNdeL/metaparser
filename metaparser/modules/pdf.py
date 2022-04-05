@@ -1,6 +1,6 @@
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
-from PyPDF2 import PdfFileReader, PdfFileMerger
+from PyPDF2 import PdfFileMerger, PdfFileReader  # type: ignore
 
 from .base import BaseParser
 
@@ -16,7 +16,6 @@ FIELD_PRODUCER = "/Producer"
 FIELD_TRAPPED = "/Trapped"
 
 
-
 class PDFParser(BaseParser):
     def get_fields(self) -> List[str]:
         return [
@@ -29,7 +28,7 @@ class PDFParser(BaseParser):
             FIELD_MODIFIED_DATE,
             FIELD_CREATOR,
             FIELD_PRODUCER,
-            FIELD_TRAPPED
+            FIELD_TRAPPED,
         ]
 
     @staticmethod
@@ -38,8 +37,8 @@ class PDFParser(BaseParser):
 
     def __init__(self) -> None:
         super().__init__()
-        metadata = None
-        filename = None
+        self.metadata = None
+        self.filename = None
 
     def parse(self, filename: str) -> None:
         self.filename = filename
