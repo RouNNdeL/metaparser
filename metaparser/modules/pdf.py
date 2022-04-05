@@ -37,13 +37,13 @@ class PDFParser(BaseParser):
 
     def __init__(self) -> None:
         super().__init__()
-        self.metadata = None
-        self.filename = None
+        self.metadata: Dict[str, str] = dict()
+        self.filename = str()
 
     def parse(self, filename: str) -> None:
         self.filename = filename
         metadata = PdfFileReader(filename).getDocumentInfo()
-        self.metadata = {}
+        self.metadata = dict()
         for field in metadata:
             self.metadata[field] = metadata[field]
 
