@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+from typing import Dict, List, Optional
 
 import eyed3  # type: ignore
 import eyed3.mp3  # type: ignore

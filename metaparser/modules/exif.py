@@ -1,11 +1,9 @@
-from datetime import datetime
-from typing import Dict, List, Optional, Final
+from typing import Dict, List, Optional
 
-from exif import Image
-from exif._constants import ATTRIBUTE_ID_MAP
+from exif import Image  # type: ignore
+from exif._constants import ATTRIBUTE_ID_MAP  # type: ignore
 
 from .base import BaseParser
-
 
 
 class ExifParser(BaseParser):
@@ -26,7 +24,6 @@ class ExifParser(BaseParser):
     def get_all_values(self) -> Dict[str, str]:
         return self.__img.get_all()
 
-    
     def set_field(self, field: str, value: Optional[str]) -> None:
         self.__img.set(field, value)
 
@@ -39,7 +36,6 @@ class ExifParser(BaseParser):
     def write(self) -> None:
         with open(self.__filename, "wb") as f:
             f.write(self.__img.get_file())
-
 
     @staticmethod
     def supported_mimes() -> List[str]:
