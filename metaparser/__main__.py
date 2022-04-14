@@ -312,6 +312,7 @@ def print_file(file, verbose, debug):
         parser.parse(file)
         parser.print()
 
+
 # analyze entropy, default entropy value is 6
 @cli.command("entropy")
 @click.option(
@@ -335,12 +336,7 @@ def print_file(file, verbose, debug):
     default=False,
     help="print debug messages",
 )
-@click.option(
-    "-e",
-    "--entropy",
-    type=float,
-    default=6
-)
+@click.option("-e", "--entropy", type=float, default=6)
 def entropy(file, verbose, debug, entropy):
     """print the file"""
     if verbose:
@@ -377,7 +373,6 @@ def entropy(file, verbose, debug, entropy):
         parser.parse(file)
         for f, v in parser.analyze_entropy(entropy).items():
             print(f"{f}: {v}")
-
 
 
 def entry_point():
