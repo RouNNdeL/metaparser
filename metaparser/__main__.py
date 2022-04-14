@@ -361,8 +361,8 @@ def entropy(file, verbose, debug, entropy):
                     continue
 
                 print(f"{file}:")
-                for f, v in d:
-                    print(f"{f}: {v}")
+                for k, v in d:
+                    print(f"{k}: {v}")
                 print()
     else:
         parser_cls = ParserFactory.get_parser_for_file(file)
@@ -371,8 +371,8 @@ def entropy(file, verbose, debug, entropy):
 
         parser = parser_cls()
         parser.parse(file)
-        for f, v in parser.analyze_entropy(entropy).items():
-            print(f"{f}: {v}")
+        for k, v in parser.analyze_entropy(entropy).items():
+            print(f"{k}: {v}")
 
 
 def entry_point():

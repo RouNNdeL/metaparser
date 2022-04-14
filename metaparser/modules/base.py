@@ -40,13 +40,13 @@ class BaseParser(ABC):
             print("No metadata found")
             return
 
-        for v, k in items:
-            print(f"{v}: {k}")
+        for k, v in items:
+            print(f"{k}: {v}")
 
     def analyze_entropy(self, min_entropy) -> Dict[str, str]:
         return {
-            f: v
-            for f, v in self.get_all_values().items()
+            k: v
+            for k, v in self.get_all_values().items()
             if isinstance(v, str) and utils.entropy(v) > min_entropy
         }
 
