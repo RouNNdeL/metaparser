@@ -16,6 +16,10 @@ class BaseParser(ABC):
     def get_fields(self) -> List[str]:
         pass
 
+    def get_suspicious_fields(self) -> List[str]:
+        return []
+        pass
+
     def delete_field(self, field: str) -> None:
         if field not in self.get_fields():
             raise KeyError("Field not present in parser")

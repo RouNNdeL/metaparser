@@ -3,6 +3,8 @@ import os
 
 import click
 import magic
+from colorama import init
+from termcolor import colored
 
 from .modules.auto import ParserFactory
 

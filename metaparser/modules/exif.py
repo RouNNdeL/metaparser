@@ -21,6 +21,15 @@ class ExifParser(BaseParser):
     def get_fields(self) -> List[str]:
         return list(ATTRIBUTE_ID_MAP.keys())
 
+    def get_suspicious_fields(self) -> List[str]:
+        return [
+            "xp_title",
+            "xp_comment",
+            "xp_author",
+            "xp_keywords",
+            "xp_subject"
+        ]
+
     def get_all_values(self) -> Dict[str, str]:
         return self.__img.get_all()
 
